@@ -123,6 +123,7 @@ function ProjectDetails({ data }) {
   };
 
   const BnBSaleCreator = async () => {
+    console.log(PreSalesContract);
     if (approve) {
       try {
         setProgress(true);
@@ -130,21 +131,23 @@ function ProjectDetails({ data }) {
           pricePerToken,
           getUnixTime(startDate).toString(),
           getUnixTime(endDate).toString(),
-          parseUnits(minLimit).toString(),
-          parseUnits(maxLimit).toString(),
-          parseUnits(hardCap).toString(),
-          parseUnits(softCap).toString(),
-          listingPrice,
+          minLimit.toString(),
+          maxLimit.toString(),
+          hardCap.toString(),
+          softCap.toString(),
+          listingPrice.toString(),
           liguidity.toString(),
         ]);
         console.log(res.hash);
         setSaleStatus(true);
+        setProgress(false);
       } catch (error) {
+        console.log(error);
         if (account) {
           enqueueSnackbar("Sales Alreaddy exist", {
             variant: "error",
           });
-          setSaleStatus(true);
+
           setProgress(false);
         } else {
           setProgress(false);
