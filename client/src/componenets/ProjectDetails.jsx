@@ -75,9 +75,9 @@ function ProjectDetails({ data }) {
   };
 
   const getNumberOfTokens = async () => {
-    console.log(PreSalesContract);
-    setProgress(true);
+    // console.log(PreSalesContract);
     try {
+      setProgress(true);
       const numOfToken = await PreSalesContract.getTotalNumberOfTokens(
         pricePerToken,
         listingPrice,
@@ -100,11 +100,10 @@ function ProjectDetails({ data }) {
   const approveToken = async () => {
     if (numberOfTokens) {
       try {
-        console.log(TokenContarct);
-
         setProgress(true);
         const res = await TokenContarct.approve(
           Environment.PreSaleDeployer,
+
           parseUnits(numberOfTokens).toString()
         );
 
@@ -117,8 +116,9 @@ function ProjectDetails({ data }) {
       }
     } else {
       setProgress(false);
+      // setApprove(true);
 
-      console.log("err", "connect wallet");
+      console.log("err", "Number of token not fetched");
     }
   };
 
@@ -155,28 +155,6 @@ function ProjectDetails({ data }) {
         }
       }
     }
-  };
-
-  const Approve = async () => {
-    if (account) {
-      setProgress(true);
-
-      //number of token
-      getNumberOfTokens();
-
-      //token approve
-
-      approveToken();
-
-      // console.log("sales contract", PreSalesContract);
-
-      // postData(data);
-    } else {
-      enqueueSnackbar("Connect your wallet", {
-        variant: "error",
-      });
-    }
-    setProgress(false);
   };
 
   return (
@@ -246,6 +224,20 @@ function ProjectDetails({ data }) {
                 </button>
               </Box>
             </>
+          ) : numberOfTokens ? (
+            <>
+              <Box
+                position="relative"
+                mx="auto"
+                display="flex"
+                justifyContent="space-around"
+                my={4}
+              >
+                <button className="btn" onClick={approveToken}>
+                  Approve
+                </button>
+              </Box>
+            </>
           ) : (
             <>
               <Box
@@ -255,8 +247,8 @@ function ProjectDetails({ data }) {
                 justifyContent="space-around"
                 my={4}
               >
-                <button className="btn" onClick={Approve}>
-                  Approve
+                <button className="btn" onClick={getNumberOfTokens}>
+                  Process
                 </button>
               </Box>
             </>
