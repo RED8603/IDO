@@ -15,7 +15,7 @@ app.use(cors());
 
 //db config
 const url =
-  "mongodb+srv://red:red123@cluster0.kx1wi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://<name>:<pass>@cluster0.kx1wi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 mongoose.connect(url);
 
