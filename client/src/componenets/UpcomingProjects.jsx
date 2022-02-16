@@ -87,6 +87,7 @@ function UpcomingProjects() {
                 {projects.map((item) => (
                   <>
                     <Card
+                      key={item._id}
                       sx={{
                         minWidth: "300px",
                         padding: "10px",
