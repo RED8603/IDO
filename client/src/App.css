@@ -1,0 +1,18 @@
+.btn {
+    border: none;
+    cursor: pointer;
+    padding: 15px 30px;
+    font-size: 18px;
+    background: linear-gradient(
+      0deg,
+      rgba(225, 172, 84, 1) 0%,
+      rgba(253, 239, 175, 1) 25%,
+      rgba(219, 159, 66, 1) 50%,
+      rgba(253, 239, 175, 1) 75%,
+      rgba(225, 172, 84, 1) 100%
+    );
+    font-weight: 700;
+    /* margin-left: 32px; */
+    border-radius: 50px;
+  }
+  
